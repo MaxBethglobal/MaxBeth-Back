@@ -5,13 +5,20 @@ let betting;
 
 beforeEach(async function () {
   const Betting = await ethers.getContractFactory("Betting");
-  betting = await Betting.deploy("URL", [1, 2]);
+  betting = await Betting.deploy(
+    "URL",
+    [1, 2],
+    [
+      [1, 2],
+      [3, 4],
+    ]
+  );
   await betting.deployed();
 });
 
 describe("Betting", function () {
-  it("Should return status", async function () {
-    expect(await betting.status()).to.equal(1);
+  xit("Should return status", async function () {
+    expect(await betting.bettingEvents(1).status).to.equal(1);
 
     // const setBettingTx = await betting.setGreeting("Hola, mundo!");
 
@@ -21,9 +28,9 @@ describe("Betting", function () {
     // expect(await betting.greet()).to.equal("Hola, mundo!");
   });
 
-  it("Should return status", async function () {
+  it("Should revert", async function () {
     // const msg =
-    await expect(betting.computeWinnings(1)).to.be.reverted;
+    await expect(betting.computeWinnings(1, 1)).to.be.reverted;
     // console.log(msg);
     // const setBettingTx = await betting.setGreeting("Hola, mundo!");
 

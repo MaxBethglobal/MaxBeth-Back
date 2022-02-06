@@ -28,9 +28,8 @@ contract Betting is ERC1155Supply, Ownable {
     mapping(uint256 => BettingEvent) public bettingEvents;
     uint256[] public bettingEventsKeys;
 
-    // fee or "rake" :
+    // fee or "rake" : 100 == 1%
     uint256 public fee = 100;
-
 
 
     constructor(string memory uri_, uint256[] memory eventIds_, uint256[][] memory resultIds_) ERC1155(uri_) {

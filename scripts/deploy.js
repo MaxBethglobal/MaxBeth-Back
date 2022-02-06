@@ -15,7 +15,14 @@ async function main() {
 
   // We get the contract to deploy
   const Betting = await hre.ethers.getContractFactory("Betting");
-  const betting = await Betting.deploy("URL", [1, 2]);
+  const betting = await Betting.deploy(
+    "URL",
+    [1, 2],
+    [
+      [1, 2],
+      [3, 4],
+    ]
+  );
 
   await betting.deployed();
 
