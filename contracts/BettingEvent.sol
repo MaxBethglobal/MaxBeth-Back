@@ -33,15 +33,19 @@ contract Betting is ERC1155Supply, Ownable {
 
 
 
-    constructor(string memory uri_, uint256[] memory resultIds_) ERC1155(uri_) {
-        addResultIds(resultIds_);
-        status = State.OPEN;
+    constructor(string memory uri_, uint256[] memory eventIds_, uint256[][] memory resultIds_) ERC1155(uri_) {
+        addResultIds(eventIds_, resultIds_);
+        for (uint i = 0; i < eventIds_.length; i++) {
+            bettingEvents[eventIds_[i]].status = State.OPEN;
+        }
     }
 
-    function addResultIds(uint256[] memory resultIds_) public onlyOwner() {
-        for (uint i = 0; i < resultIds_.length; i++) {
-            resultsIds[resultIds_[i]] = true;
-            resultsIdsKeys.push(resultIds_[i]);
+    function addResultIds(uint256[] memory eventIds_, uint256[][] memory resultIds_) public onlyOwner() {
+        for (uint i = 0; i < eventIds_.length; i++) {
+            for (uint j = 0; j < resultIds_.length; j++) {
+                bettingEvents[eventIds_[i]].resultsIds[resultIds_[j][i]] = true;
+                bettingEvents[eventIds_[i]].resultsIdsKeys.push(resultIds_[j][i]);
+            }
         }
     }
 
@@ -81,8 +85,8 @@ contract Betting is ERC1155Supply, Ownable {
         
         return true;
     }
-    function lock() external {
-        status = State.LOCKED;
+    function lock(uint256 eventIds_) external {
+        bettingEvents[eventIds_].status = State.LOCKED;
     }
 
     // Store the event result
