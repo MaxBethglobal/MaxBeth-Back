@@ -22,7 +22,8 @@ describe("Betting", function () {
   });
 
   it("Should return status", async function () {
-    const msg = await expect(betting.computeWinnings(1)).to.be.reverted;
+    // const msg =
+    await expect(betting.computeWinnings(1)).to.be.reverted;
     // console.log(msg);
     // const setBettingTx = await betting.setGreeting("Hola, mundo!");
 
