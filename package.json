@@ -10,8 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/MaxBethglobal/MaxBeth-Back.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Mickaël Bouvier <mickael.bouvier.pro@gmail.com> (https://www.linkedin.com/in/mickael-bouvier/)",
+  "contributors": ["Ewan Debove", "Ricardo Torres"],
+  "license": "AGPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/MaxBethglobal/MaxBeth-Back/issues"
   },
